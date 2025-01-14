@@ -1,6 +1,6 @@
 package com.qacart.testcases;
 
-import com.qacart.factory.DriverFactory;
+import com.qacart.driver.factory.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
