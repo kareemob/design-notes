@@ -5,10 +5,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
-public class DriverFactory {
-    public WebDriver driver;
+public final class DriverFactory {
+
+    private DriverFactory(){}
+
     @Test
-    public WebDriver initDriver(){
+    public static WebDriver initDriver(){
+        WebDriver driver;
         String browserType = System.getProperty("browser", "CHROME");
         switch (browserType.toLowerCase()){
             case "chrome" -> driver = new ChromeDriver();
