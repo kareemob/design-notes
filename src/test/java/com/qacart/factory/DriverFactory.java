@@ -9,7 +9,7 @@ public final class DriverFactory {
 
     private DriverFactory(){}
 
-    @Test
+
     public static WebDriver initDriver(){
         WebDriver driver;
         String browserType = System.getProperty("browser", "CHROME");
