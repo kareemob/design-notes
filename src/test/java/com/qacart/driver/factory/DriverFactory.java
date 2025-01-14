@@ -1,9 +1,8 @@
-package com.qacart.factory;
+package com.qacart.driver.factory;
 
+import com.qacart.driver.driverManager.ChromeManager;
+import com.qacart.driver.driverManager.FirefoxManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.Test;
 
 public final class DriverFactory {
 
@@ -14,8 +13,8 @@ public final class DriverFactory {
         WebDriver driver;
         String browserType = System.getProperty("browser", "CHROME");
         switch (browserType.toLowerCase()){
-            case "chrome" -> driver = new ChromeDriver();
-            case "firefox" -> driver = new FirefoxDriver();
+            case "chrome" -> driver = ChromeManager.getChromeDriver();
+            case "firefox" -> driver = FirefoxManager.getFireFoxDriver();
             default -> throw new RuntimeException(browserType + " is not supported");
         }
 
