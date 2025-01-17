@@ -1,5 +1,6 @@
 package com.qacart.pages;
 
+import com.qacart.config.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -72,5 +73,9 @@ public class RegisterPage {
 
     private String generateUniqueEmail() {
         return Instant.now().toEpochMilli() + "test@gmail.com";
+    }
+
+    public void load(){
+        driver.get(ConfigFactory.getConfig().url() + "/signup");
     }
 }
