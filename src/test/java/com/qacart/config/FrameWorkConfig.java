@@ -1,5 +1,7 @@
 package com.qacart.config;
 
+import com.qacart.config.converters.StringToBrowserTypeConverter;
+import com.qacart.enums.BrowserType;
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
@@ -11,4 +13,8 @@ import org.aeonbits.owner.Config;
 public interface FrameWorkConfig extends Config{
     @Config.DefaultValue("https://todo.qacart.com")
     String url();
+
+    @DefaultValue("CHROME")
+    @ConverterClass(StringToBrowserTypeConverter.class)
+    BrowserType browser();
 }
