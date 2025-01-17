@@ -1,5 +1,6 @@
 package com.qacart.driver.factory;
 
+import com.qacart.config.ConfigFactory;
 import com.qacart.driver.driverManager.ChromeManager;
 import com.qacart.driver.driverManager.FirefoxManager;
 import com.qacart.enums.BrowserType;
@@ -19,9 +20,7 @@ public final class DriverFactory {
     }
 
     public static WebDriver initDriver(){
-
-        String browserType = System.getProperty("browser", BrowserType.CHROME.name());
-        BrowserType targetedBrowser = BrowserType.valueOf(browserType.toUpperCase());
-        return DRIVERS.get(targetedBrowser).get();
+        BrowserType browserType = ConfigFactory.getConfig().browser();
+        return DRIVERS.get(browserType).get();
     }
 }
