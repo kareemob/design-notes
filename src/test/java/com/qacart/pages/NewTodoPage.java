@@ -12,6 +12,9 @@ public class NewTodoPage {
         this.driver = driver;
     }
 
+    /**
+     * The 2 methods below are unnecessary as we have to both hide the implementation and keep everything simple
+     */
     private void fillTodoName(String taskDescription) {
         driver.findElement(newTodoInput).sendKeys(taskDescription);
     }

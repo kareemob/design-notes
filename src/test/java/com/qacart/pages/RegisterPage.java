@@ -2,6 +2,7 @@ package com.qacart.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.time.Instant;
 
@@ -21,6 +22,10 @@ public class RegisterPage {
     }
 
     //method,steps
+
+    /**
+     * No need for the below methods!
+     */
 
     private void fillFirstName(String firstName){
         driver.findElement(firstNameInput).sendKeys(firstName);
@@ -51,11 +56,21 @@ public class RegisterPage {
     //Hiding implementation as test cases cares about functionality
 
     public void register() {
-        fillFirstName("K.com");
-        fillLastName("test!");
-        fillEmail(Instant.now().toEpochMilli() + "test@gmail.com");
-        fillPassword("Test123!");
-        fillConfirmPassword("Test123!");
-        clickSignUp();
+        WebElement firstNameInputElement = driver.findElement(firstNameInput);
+        firstNameInputElement.sendKeys("K.com");
+        WebElement lastNameInputElement = driver.findElement(lastNameInput);
+        lastNameInputElement.sendKeys("test!");
+        WebElement email = driver.findElement(emailInput);
+        email.sendKeys(generateUniqueEmail());
+        WebElement password = driver.findElement(passwordInput);
+        password.sendKeys("Test123!");
+        WebElement confirmPassword = driver.findElement(confirmPasswordInput);
+        confirmPassword.sendKeys("Test123!");
+        WebElement signupButton = driver.findElement(submitButton);
+        signupButton.click();
+    }
+
+    private String generateUniqueEmail() {
+        return Instant.now().toEpochMilli() + "test@gmail.com";
     }
 }
