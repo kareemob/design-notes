@@ -1,10 +1,11 @@
 package com.qacart.testcases;
 
 import com.qacart.config.ConfigFactory;
-import com.qacart.driver.Driver;
-import com.qacart.driver.driverManager.DriverManager;
-import org.openqa.selenium.By;
+import com.qacart.pages.RegisterPage;
+import com.qacart.pages.TodoPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,21 +17,26 @@ public class RegisterTest {
 
     @BeforeMethod
     public void setup(){
-        Driver.initDriver();
-        driver = DriverManager.getDriver();
+//        Driver.initDriver();
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(59));
+        driver.get(ConfigFactory.getConfig().url() + "/signup");
+        driver.manage().window().fullscreen();
     }
 
     @Test
     public void userShouldBeAbleToRegister(){
+        RegisterPage registerPage = new RegisterPage(driver);
 
-        driver.get(ConfigFactory.getConfig().url() + "/signup");
-        driver.findElement(By.cssSelector("[data-testid=\"first-name\"]")).sendKeys("K.com");
-        driver.findElement(By.cssSelector("[data-testid=\"last-name\"]")).sendKeys("test!");
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys(Instant.now().toEpochMilli() + "test@gmail.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("Test123!");
-        driver.findElement(By.cssSelector("[data-testid=\"confirm-password\"]")).sendKeys("Test123!");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
-        driver.findElement(By.cssSelector("[data-testid=\"welcome\"]")).isDisplayed();
+
+        registerPage.fillFirstName("K.com");
+        registerPage.fillLastName("test!");
+        registerPage.fillEmail(Instant.now().toEpochMilli() + "test@gmail.com");
+        registerPage.fillPassword("Test123!");
+        registerPage.fillConfirmPassword("Test123!");
+        registerPage.clickSignUp();
+
+        TodoPage todoPage = new TodoPage(driver);
+        Assert.assertTrue(todoPage.isWelcomeMessageDisplayed());
     }
 }
