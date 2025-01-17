@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -30,18 +31,12 @@ public class DeleteTodoTest {
         RegisterPage registerPage = new RegisterPage(driver);
 
 
-        registerPage.fillFirstName("K.com");
-        registerPage.fillLastName("test!");
-        registerPage.fillEmail(Instant.now().toEpochMilli() + "test@gmail.com");
-        registerPage.fillPassword("Test123!");
-        registerPage.fillConfirmPassword("Test123!");
-        registerPage.clickSignUp();
+        registerPage.register();
 
         todoPage = new TodoPage(driver);
         todoPage.clickAddTodo();
         NewTodoPage newTodoPage = new NewTodoPage(driver);
-        newTodoPage.fillTodoName("Learn");
-        newTodoPage.clickCreateTodo();
+        newTodoPage.addNewTodo();
     }
 
     @Test
@@ -50,4 +45,8 @@ public class DeleteTodoTest {
         Assert.assertTrue(todoPage.noTodosIsDisplayed());
     }
 
+    @AfterMethod
+    void tearDown(){
+        driver.quit();
+    }
 }

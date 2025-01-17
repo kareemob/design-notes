@@ -7,6 +7,7 @@ import com.qacart.pages.TodoPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -24,14 +25,7 @@ public class AddTodoTest {
         driver.manage().window().maximize();
 
         RegisterPage registerPage = new RegisterPage(driver);
-
-
-        registerPage.fillFirstName("K.com");
-        registerPage.fillLastName("test!");
-        registerPage.fillEmail(Instant.now().toEpochMilli() + "test@gmail.com");
-        registerPage.fillPassword("Test123!");
-        registerPage.fillConfirmPassword("Test123!");
-        registerPage.clickSignUp();
+        registerPage.register();
     }
 
     @Test
@@ -39,8 +33,12 @@ public class AddTodoTest {
         TodoPage todoPage = new TodoPage(driver);
         todoPage.clickAddTodo();
         NewTodoPage newTodoPage = new NewTodoPage(driver);
-        newTodoPage.fillTodoName("Learn");
-        newTodoPage.clickCreateTodo();
+        newTodoPage.addNewTodo();
         Assert.assertTrue(todoPage.isTodoDisplayed());
+    }
+
+    @AfterMethod
+    void tearDown(){
+        driver.quit();
     }
 }
