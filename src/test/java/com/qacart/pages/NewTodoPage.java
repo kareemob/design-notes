@@ -12,12 +12,17 @@ public class NewTodoPage {
         this.driver = driver;
     }
 
-    public void fillTodoName(String taskDescription) {
+    private void fillTodoName(String taskDescription) {
         driver.findElement(newTodoInput).sendKeys(taskDescription);
     }
 
-    public void clickCreateTodo(){
+    private void clickCreateTodo(){
         driver.findElement(newTodoSubmit).click();
+    }
+
+    public void addNewTodo(){
+        fillTodoName("learn anything!");
+        clickCreateTodo();
     }
 
 }
