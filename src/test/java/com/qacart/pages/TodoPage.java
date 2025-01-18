@@ -1,9 +1,13 @@
 package com.qacart.pages;
 
+import com.qacart.base.BasePage;
+import com.qacart.config.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class TodoPage {
+import static com.qacart.driver.driverManager.DriverManager.getDriver;
+
+public class TodoPage implements BasePage {
     //elements
     public final By welcomeMessage = By.cssSelector("[data-testid=\"welcome\"]");
     public final By plusButton = By.cssSelector("[data-testid=\"add\"]");
@@ -13,23 +17,27 @@ public class TodoPage {
 
     //method,steps
 
-    public Boolean isWelcomeMessageDisplayed(WebDriver driver) {
-        return driver.findElement(welcomeMessage).isDisplayed();
+    public Boolean isWelcomeMessageDisplayed() {
+        return getDriver().findElement(welcomeMessage).isDisplayed();
     }
 
-    public void clickAddTodo(WebDriver driver) {
-        driver.findElement(plusButton).click();
+    public void clickAddTodo() {
+        getDriver().findElement(plusButton).click();
     }
 
-    public Boolean isTodoDisplayed(WebDriver driver) {
-        return driver.findElement(todoItem).isDisplayed();
+    public Boolean isTodoDisplayed() {
+        return getDriver().findElement(todoItem).isDisplayed();
     }
 
-    public void clickDeleteIcon(WebDriver driver) {
-        driver.findElement(deleteIcon).click();
+    public void clickDeleteIcon() {
+        getDriver().findElement(deleteIcon).click();
     }
 
-    public Boolean noTodosIsDisplayed(WebDriver driver) {
-        return driver.findElement(noTodos).isDisplayed();
+    public Boolean noTodosIsDisplayed() {
+        return getDriver().findElement(noTodos).isDisplayed();
+    }
+    @Override
+    public void load() {
+        getDriver().get(ConfigFactory.getConfig().url() + "/todo");
     }
 }

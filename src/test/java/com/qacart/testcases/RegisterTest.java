@@ -1,6 +1,8 @@
 package com.qacart.testcases;
 
+import com.qacart.base.BaseTest;
 import com.qacart.config.ConfigFactory;
+import com.qacart.driver.Driver;
 import com.qacart.pages.RegisterPage;
 import com.qacart.pages.TodoPage;
 import org.openqa.selenium.WebDriver;
@@ -13,28 +15,16 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.time.Instant;
 
-public class RegisterTest {
-    WebDriver driver;
+import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
-    @BeforeMethod
-    public void setup(){
-//        Driver.initDriver();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(59));
-        driver.get(ConfigFactory.getConfig().url() + "/signup");
-        driver.manage().window().maximize();
-    }
+public class RegisterTest extends BaseTest {
 
     @Test
     public void userShouldBeAbleToRegister(){
         RegisterPage registerPage = new RegisterPage();
-        registerPage.register(driver);
+        registerPage.load();
+        registerPage.register();
         TodoPage todoPage = new TodoPage();
-        Assert.assertTrue(todoPage.isWelcomeMessageDisplayed(driver));
-    }
-
-    @AfterMethod
-    void tearDown(){
-        driver.quit();
+        Assert.assertTrue(todoPage.isWelcomeMessageDisplayed());
     }
 }
