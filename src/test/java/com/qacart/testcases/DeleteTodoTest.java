@@ -28,21 +28,21 @@ public class DeleteTodoTest {
         driver.get(ConfigFactory.getConfig().url() + "/signup");
         driver.manage().window().maximize();
 
-        RegisterPage registerPage = new RegisterPage(driver);
+        RegisterPage registerPage = new RegisterPage();
 
 
-        registerPage.register();
+        registerPage.register(driver);
 
-        todoPage = new TodoPage(driver);
-        todoPage.clickAddTodo();
-        NewTodoPage newTodoPage = new NewTodoPage(driver);
-        newTodoPage.addNewTodo();
+        todoPage = new TodoPage();
+        todoPage.clickAddTodo(driver);
+        NewTodoPage newTodoPage = new NewTodoPage();
+        newTodoPage.addNewTodo(driver);
     }
 
     @Test
     public void clickDeleteIcon() {
-        todoPage.clickDeleteIcon();
-        Assert.assertTrue(todoPage.noTodosIsDisplayed());
+        todoPage.clickDeleteIcon(driver);
+        Assert.assertTrue(todoPage.noTodosIsDisplayed(driver));
     }
 
     @AfterMethod

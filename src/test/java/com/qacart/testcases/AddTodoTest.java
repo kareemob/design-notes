@@ -24,17 +24,17 @@ public class AddTodoTest {
         driver.get(ConfigFactory.getConfig().url() + "/signup");
         driver.manage().window().maximize();
 
-        RegisterPage registerPage = new RegisterPage(driver);
-        registerPage.register();
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.register(driver);
     }
 
     @Test
     public void createTodo() {
-        TodoPage todoPage = new TodoPage(driver);
-        todoPage.clickAddTodo();
-        NewTodoPage newTodoPage = new NewTodoPage(driver);
-        newTodoPage.addNewTodo();
-        Assert.assertTrue(todoPage.isTodoDisplayed());
+        TodoPage todoPage = new TodoPage();
+        todoPage.clickAddTodo(driver);
+        NewTodoPage newTodoPage = new NewTodoPage();
+        newTodoPage.addNewTodo(driver);
+        Assert.assertTrue(todoPage.isTodoDisplayed(driver));
     }
 
     @AfterMethod

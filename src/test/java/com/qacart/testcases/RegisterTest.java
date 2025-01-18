@@ -27,10 +27,10 @@ public class RegisterTest {
 
     @Test
     public void userShouldBeAbleToRegister(){
-        RegisterPage registerPage = new RegisterPage(driver);
-        registerPage.register();
-        TodoPage todoPage = new TodoPage(driver);
-        Assert.assertTrue(todoPage.isWelcomeMessageDisplayed());
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.register(driver);
+        TodoPage todoPage = new TodoPage();
+        Assert.assertTrue(todoPage.isWelcomeMessageDisplayed(driver));
     }
 
     @AfterMethod
