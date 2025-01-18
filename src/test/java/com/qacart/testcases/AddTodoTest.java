@@ -6,6 +6,7 @@ import com.qacart.driver.Driver;
 import com.qacart.pages.NewTodoPage;
 import com.qacart.pages.RegisterPage;
 import com.qacart.pages.TodoPage;
+import com.qacart.utils.DataUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -24,7 +25,7 @@ public class AddTodoTest extends BaseTest {
 
         getDriver().get(ConfigFactory.getConfig().url() + "/signup");
         RegisterPage registerPage = new RegisterPage();
-        registerPage.register();
+        registerPage.register("kareem", "obaidat", DataUtils.generateUniqueEmail(), "Test123!");
     }
 
     @Test

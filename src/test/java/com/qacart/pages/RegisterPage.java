@@ -20,14 +20,22 @@ public class RegisterPage implements BasePage {
 
     //Hiding implementation as test cases cares about functionality
 
-    public void register() {
-        getDriver().findElement(firstNameInput).sendKeys("K.com");
-        getDriver().findElement(lastNameInput).sendKeys("test!");
-        getDriver().findElement(emailInput).sendKeys(Instant.now().toEpochMilli() + "test@gmail.com");
-        getDriver().findElement(passwordInput).sendKeys("Test123!");
-        getDriver().findElement(confirmPasswordInput).sendKeys("Test123!");
+    public void register(String firstName, String lastName, String email, String password) {
+//        getDriver().findElement(firstNameInput).sendKeys("K.com");
+//        getDriver().findElement(lastNameInput).sendKeys("test!");
+//        getDriver().findElement(emailInput).sendKeys(Instant.now().toEpochMilli() + "test@gmail.com");
+//        getDriver().findElement(passwordInput).sendKeys("Test123!");
+//        getDriver().findElement(confirmPasswordInput).sendKeys("Test123!");
+//        getDriver().findElement(submitButton).click();
+        getDriver().findElement(firstNameInput).sendKeys(firstName);
+        getDriver().findElement(lastNameInput).sendKeys(lastName);
+        getDriver().findElement(emailInput).sendKeys(email);
+        getDriver().findElement(passwordInput).sendKeys(password);
+        getDriver().findElement(confirmPasswordInput).sendKeys(password);
         getDriver().findElement(submitButton).click();
     }
+
+
 
     @Override
     public void load() {

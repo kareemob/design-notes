@@ -6,6 +6,7 @@ import com.qacart.driver.Driver;
 import com.qacart.pages.NewTodoPage;
 import com.qacart.pages.RegisterPage;
 import com.qacart.pages.TodoPage;
+import com.qacart.utils.DataUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,7 +30,7 @@ public class DeleteTodoTest extends BaseTest {
         RegisterPage registerPage = new RegisterPage();
 
 
-        registerPage.register();
+        registerPage.register("kareem", "obaidat", DataUtils.generateUniqueEmail(), "Test123!");
 
         todoPage = new TodoPage();
         todoPage.clickAddTodo();
