@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class TodoPage {
-    private WebDriver driver;
     //elements
     public final By welcomeMessage = By.cssSelector("[data-testid=\"welcome\"]");
     public final By plusButton = By.cssSelector("[data-testid=\"add\"]");
@@ -12,30 +11,25 @@ public class TodoPage {
     public final By deleteIcon = By.cssSelector("[data-testid=\"delete\"]");
     public final By noTodos = By.cssSelector("[data-testid=\"no-todos\"]");
 
-    //Constructor
-    public TodoPage(WebDriver driver){
-        this.driver = driver;
-    }
-
     //method,steps
 
-    public Boolean isWelcomeMessageDisplayed() {
+    public Boolean isWelcomeMessageDisplayed(WebDriver driver) {
         return driver.findElement(welcomeMessage).isDisplayed();
     }
 
-    public void clickAddTodo() {
+    public void clickAddTodo(WebDriver driver) {
         driver.findElement(plusButton).click();
     }
 
-    public Boolean isTodoDisplayed() {
+    public Boolean isTodoDisplayed(WebDriver driver) {
         return driver.findElement(todoItem).isDisplayed();
     }
 
-    public void clickDeleteIcon() {
+    public void clickDeleteIcon(WebDriver driver) {
         driver.findElement(deleteIcon).click();
     }
 
-    public Boolean noTodosIsDisplayed() {
+    public Boolean noTodosIsDisplayed(WebDriver driver) {
         return driver.findElement(noTodos).isDisplayed();
     }
 }

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import java.time.Instant;
 
 public class RegisterPage {
-    private WebDriver driver;
     //elements
     private final By firstNameInput = By.cssSelector("[data-testid=\"first-name\"]");
     private final By lastNameInput = By.cssSelector("[data-testid=\"last-name\"]");
@@ -15,34 +14,30 @@ public class RegisterPage {
     private final By confirmPasswordInput = By.cssSelector("[data-testid=\"confirm-password\"]");
     private final By submitButton = By.cssSelector("[data-testid=\"submit\"]");
 
-    //Constructor
-    public RegisterPage(WebDriver driver){
-        this.driver = driver;
-    }
 
     //method,steps
 
-    private void fillFirstName(String firstName){
+    private void fillFirstName(WebDriver driver, String firstName){
         driver.findElement(firstNameInput).sendKeys(firstName);
     }
 
-    private void fillLastName(String lastName){
+    private void fillLastName(WebDriver driver ,String lastName){
         driver.findElement(lastNameInput).sendKeys(lastName);
     }
 
-    private void fillEmail(String email){
+    private void fillEmail(WebDriver driver, String email){
         driver.findElement(emailInput).sendKeys(email);
     }
 
-    private void fillPassword(String password){
+    private void fillPassword(WebDriver driver, String password){
         driver.findElement(passwordInput).sendKeys(password);
     }
 
-    private void fillConfirmPassword(String password){
+    private void fillConfirmPassword(WebDriver driver, String password){
         driver.findElement(confirmPasswordInput).sendKeys(password);
     }
 
-    private void clickSignUp(){
+    private void clickSignUp(WebDriver driver){
         driver.findElement(submitButton).click();
     }
 
@@ -50,12 +45,12 @@ public class RegisterPage {
 
     //Hiding implementation as test cases cares about functionality
 
-    public void register() {
-        fillFirstName("K.com");
-        fillLastName("test!");
-        fillEmail(Instant.now().toEpochMilli() + "test@gmail.com");
-        fillPassword("Test123!");
-        fillConfirmPassword("Test123!");
-        clickSignUp();
+    public void register(WebDriver driver) {
+        driver.findElement(firstNameInput).sendKeys("K.com");
+        driver.findElement(lastNameInput).sendKeys("test!");
+        driver.findElement(emailInput).sendKeys(Instant.now().toEpochMilli() + "test@gmail.com");
+        driver.findElement(passwordInput).sendKeys("Test123!");
+        driver.findElement(confirmPasswordInput).sendKeys("Test123!");
+        driver.findElement(submitButton).click();
     }
 }
