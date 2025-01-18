@@ -39,7 +39,7 @@ public class DeleteTodoTest extends BaseTest {
 
     @Test
     public void clickDeleteIcon() {
-        todoPage.clickDeleteIcon();
+        todoPage.loadTodos().get(0).clickDeleteIcon();
         Assert.assertTrue(todoPage.noTodosIsDisplayed());
     }
 }
