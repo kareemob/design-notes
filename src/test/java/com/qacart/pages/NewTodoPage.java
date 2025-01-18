@@ -2,6 +2,7 @@ package com.qacart.pages;
 
 import com.qacart.base.BasePage;
 import com.qacart.config.ConfigFactory;
+import com.qacart.models.Todo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -20,8 +21,8 @@ public class NewTodoPage implements BasePage {
         getDriver().findElement(newTodoSubmit).click();
     }
 
-    public void addNewTodo(){
-        getDriver().findElement(newTodoInput).sendKeys("learn anything!");
+    public void addNewTodo(Todo todo){
+        getDriver().findElement(newTodoInput).sendKeys(todo.getTaskName());
         getDriver().findElement(newTodoSubmit).click();
     }
     @Override

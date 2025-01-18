@@ -14,7 +14,7 @@ public class RegisterTest extends BaseTest {
     public void userShouldBeAbleToRegister(){
         RegisterPage registerPage = new RegisterPage();
         registerPage.load();
-        User user = new User.UserBuilder()
+        User user = User.builder()
                 .setFirstName("kareem")
                 .setLastName("obaidat")
                 .setEmail(DataUtils.generateUniqueEmail())

@@ -19,12 +19,6 @@ public class RegisterPage implements BasePage {
     //Hiding implementation as test cases cares about functionality
 
     public void register(User user) {
-//        getDriver().findElement(firstNameInput).sendKeys("K.com");
-//        getDriver().findElement(lastNameInput).sendKeys("test!");
-//        getDriver().findElement(emailInput).sendKeys(Instant.now().toEpochMilli() + "test@gmail.com");
-//        getDriver().findElement(passwordInput).sendKeys("Test123!");
-//        getDriver().findElement(confirmPasswordInput).sendKeys("Test123!");
-//        getDriver().findElement(submitButton).click();
         getDriver().findElement(firstNameInput).sendKeys(user.getFirstName());
         getDriver().findElement(lastNameInput).sendKeys(user.getLastName());
         getDriver().findElement(emailInput).sendKeys(user.getEmail());
