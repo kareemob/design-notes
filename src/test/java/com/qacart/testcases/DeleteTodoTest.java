@@ -1,5 +1,6 @@
 package com.qacart.testcases;
 
+import com.qacart.base.BaseTest;
 import com.qacart.config.ConfigFactory;
 import com.qacart.driver.Driver;
 import com.qacart.pages.NewTodoPage;
@@ -16,37 +17,29 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.time.Instant;
 
-public class DeleteTodoTest {
-    WebDriver driver;
-    TodoPage todoPage;
+import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
+public class DeleteTodoTest extends BaseTest {
+
+    TodoPage todoPage;
 
     @BeforeMethod
     public void setup(){
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(59));
-        driver.get(ConfigFactory.getConfig().url() + "/signup");
-        driver.manage().window().maximize();
-
+        getDriver().get(ConfigFactory.getConfig().url() + "/signup");
         RegisterPage registerPage = new RegisterPage();
 
 
-        registerPage.register(driver);
+        registerPage.register();
 
         todoPage = new TodoPage();
-        todoPage.clickAddTodo(driver);
+        todoPage.clickAddTodo();
         NewTodoPage newTodoPage = new NewTodoPage();
-        newTodoPage.addNewTodo(driver);
+        newTodoPage.addNewTodo();
     }
 
     @Test
     public void clickDeleteIcon() {
-        todoPage.clickDeleteIcon(driver);
-        Assert.assertTrue(todoPage.noTodosIsDisplayed(driver));
-    }
-
-    @AfterMethod
-    void tearDown(){
-        driver.quit();
+        todoPage.clickDeleteIcon();
+        Assert.assertTrue(todoPage.noTodosIsDisplayed());
     }
 }

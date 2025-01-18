@@ -1,6 +1,8 @@
 package com.qacart.testcases;
 
+import com.qacart.base.BaseTest;
 import com.qacart.config.ConfigFactory;
+import com.qacart.driver.Driver;
 import com.qacart.pages.NewTodoPage;
 import com.qacart.pages.RegisterPage;
 import com.qacart.pages.TodoPage;
@@ -14,31 +16,24 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.time.Instant;
 
-public class AddTodoTest {
-    WebDriver driver;
+import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
+public class AddTodoTest extends BaseTest {
     @BeforeMethod
     public void setup(){
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(59));
-        driver.get(ConfigFactory.getConfig().url() + "/signup");
-        driver.manage().window().maximize();
 
+        getDriver().get(ConfigFactory.getConfig().url() + "/signup");
         RegisterPage registerPage = new RegisterPage();
-        registerPage.register(driver);
+        registerPage.register();
     }
 
     @Test
     public void createTodo() {
         TodoPage todoPage = new TodoPage();
-        todoPage.clickAddTodo(driver);
+        todoPage.clickAddTodo();
         NewTodoPage newTodoPage = new NewTodoPage();
-        newTodoPage.addNewTodo(driver);
-        Assert.assertTrue(todoPage.isTodoDisplayed(driver));
+        newTodoPage.addNewTodo();
+        Assert.assertTrue(todoPage.isTodoDisplayed());
     }
 
-    @AfterMethod
-    void tearDown(){
-        driver.quit();
-    }
 }
