@@ -1,6 +1,7 @@
 package com.qacart.testcases;
 
 import com.qacart.base.BaseTest;
+import com.qacart.fixtures.UserFixtures;
 import com.qacart.models.User;
 import com.qacart.pages.RegisterPage;
 import com.qacart.pages.TodoPage;
@@ -14,14 +15,7 @@ public class RegisterTest extends BaseTest {
     public void userShouldBeAbleToRegister(){
         RegisterPage registerPage = new RegisterPage();
         registerPage.load();
-        User user = User.builder()
-                .setFirstName("kareem")
-                .setLastName("obaidat")
-                .setEmail(DataUtils.generateUniqueEmail())
-                .setPassword("Test123!")
-                .build();
-
-        registerPage.register(user);
+        registerPage.register(UserFixtures.getDefaultUser());
         TodoPage todoPage = new TodoPage();
         Assert.assertTrue(todoPage.isWelcomeMessageDisplayed());
     }

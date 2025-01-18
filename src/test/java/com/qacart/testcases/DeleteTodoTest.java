@@ -2,6 +2,7 @@ package com.qacart.testcases;
 
 import com.qacart.base.BaseTest;
 import com.qacart.config.ConfigFactory;
+import com.qacart.fixtures.UserFixtures;
 import com.qacart.models.Todo;
 import com.qacart.models.User;
 import com.qacart.pages.NewTodoPage;
@@ -23,14 +24,7 @@ public class DeleteTodoTest extends BaseTest {
         getDriver().get(ConfigFactory.getConfig().url() + "/signup");
         RegisterPage registerPage = new RegisterPage();
 
-        User user = User.builder()
-                .setFirstName("kareem")
-                .setLastName("obaidat")
-                .setEmail(DataUtils.generateUniqueEmail())
-                .setPassword("Test123!")
-                .build();
-
-        registerPage.register(user);
+        registerPage.register(UserFixtures.getDefaultUser());
 
         todoPage = new TodoPage();
         todoPage.clickAddTodo();
