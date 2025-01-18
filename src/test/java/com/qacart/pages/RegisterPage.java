@@ -1,5 +1,7 @@
 package com.qacart.pages;
 
+import com.qacart.base.BasePage;
+import com.qacart.config.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -7,7 +9,7 @@ import java.time.Instant;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
-public class RegisterPage {
+public class RegisterPage implements BasePage {
     //elements
     private final By firstNameInput = By.cssSelector("[data-testid=\"first-name\"]");
     private final By lastNameInput = By.cssSelector("[data-testid=\"last-name\"]");
@@ -25,5 +27,10 @@ public class RegisterPage {
         getDriver().findElement(passwordInput).sendKeys("Test123!");
         getDriver().findElement(confirmPasswordInput).sendKeys("Test123!");
         getDriver().findElement(submitButton).click();
+    }
+
+    @Override
+    public void load() {
+        getDriver().get(ConfigFactory.getConfig().url() + "/signup");
     }
 }

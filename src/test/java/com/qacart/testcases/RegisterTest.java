@@ -19,15 +19,10 @@ import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
 public class RegisterTest extends BaseTest {
 
-
-    @BeforeMethod
-    public void setup(){
-        getDriver().get(ConfigFactory.getConfig().url() + "/signup");
-    }
-
     @Test
     public void userShouldBeAbleToRegister(){
         RegisterPage registerPage = new RegisterPage();
+        registerPage.load();
         registerPage.register();
         TodoPage todoPage = new TodoPage();
         Assert.assertTrue(todoPage.isWelcomeMessageDisplayed());

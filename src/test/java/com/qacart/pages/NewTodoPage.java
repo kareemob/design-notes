@@ -1,11 +1,13 @@
 package com.qacart.pages;
 
+import com.qacart.base.BasePage;
+import com.qacart.config.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
-public class NewTodoPage {
+public class NewTodoPage implements BasePage {
     private final By newTodoInput = By.cssSelector("[data-testid=\"new-todo\"]");
     private final By newTodoSubmit = By.cssSelector("[data-testid=\"submit-newTask\"]");
 
@@ -22,5 +24,8 @@ public class NewTodoPage {
         getDriver().findElement(newTodoInput).sendKeys("learn anything!");
         getDriver().findElement(newTodoSubmit).click();
     }
-
+    @Override
+    public void load() {
+        getDriver().get(ConfigFactory.getConfig().url() + "/todo/new");
+    }
 }

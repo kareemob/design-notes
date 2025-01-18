@@ -1,11 +1,13 @@
 package com.qacart.pages;
 
+import com.qacart.base.BasePage;
+import com.qacart.config.ConfigFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
-public class TodoPage {
+public class TodoPage implements BasePage {
     //elements
     public final By welcomeMessage = By.cssSelector("[data-testid=\"welcome\"]");
     public final By plusButton = By.cssSelector("[data-testid=\"add\"]");
@@ -33,5 +35,9 @@ public class TodoPage {
 
     public Boolean noTodosIsDisplayed() {
         return getDriver().findElement(noTodos).isDisplayed();
+    }
+    @Override
+    public void load() {
+        getDriver().get(ConfigFactory.getConfig().url() + "/todo");
     }
 }
