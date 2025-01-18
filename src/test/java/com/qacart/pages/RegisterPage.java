@@ -4,9 +4,6 @@ import com.qacart.base.BasePage;
 import com.qacart.config.ConfigFactory;
 import com.qacart.models.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
-import java.time.Instant;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
