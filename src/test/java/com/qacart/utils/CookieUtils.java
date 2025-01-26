@@ -1,13 +1,10 @@
 package com.qacart.utils;
 
-import com.qacart.client.UserClient;
 import io.restassured.response.Response;
 import org.openqa.selenium.Cookie;
-
 import java.util.Map;
-
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
-import static com.qacart.fixtures.UserFixtures.getDefaultUser;
+
 
 public final class CookieUtils {
     private CookieUtils(){}
