@@ -1,11 +1,17 @@
 package com.qacart.pages;
 
 import com.qacart.base.BasePage;
+import com.qacart.client.BaseClient;
+import com.qacart.client.UserClient;
 import com.qacart.config.ConfigFactory;
 import com.qacart.models.User;
+import com.qacart.utils.CookieUtils;
+import io.restassured.response.Response;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
+import static com.qacart.fixtures.UserFixtures.getDefaultUser;
 
 public class RegisterPage implements BasePage {
     //elements
@@ -27,7 +33,10 @@ public class RegisterPage implements BasePage {
         getDriver().findElement(submitButton).click();
     }
 
-
+    public void registerApi(User user){
+        Response response = UserClient.RegisterApi(user);
+        CookieUtils.setBrowserCookies(response);
+    }
 
     @Override
     public void load() {

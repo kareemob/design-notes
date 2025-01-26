@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
+import static com.qacart.fixtures.UserFixtures.getDefaultUser;
 
 public class DeleteTodoTest extends BaseTest {
 
@@ -23,13 +24,14 @@ public class DeleteTodoTest extends BaseTest {
     public void setup(){
         getDriver().get(ConfigFactory.getConfig().url() + "/signup");
         RegisterPage registerPage = new RegisterPage();
-
-        registerPage.register(UserFixtures.getDefaultUser());
-
         todoPage = new TodoPage();
+        registerPage.registerApi(getDefaultUser());
+        todoPage.load();
+
+
         todoPage.clickAddTodo();
         NewTodoPage newTodoPage = new NewTodoPage();
-        Todo todo = Todo.builder().taskName("test").build();
+        Todo todo = Todo.builder().item("test").build();
         newTodoPage.addNewTodo(todo);
     }
 

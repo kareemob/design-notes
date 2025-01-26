@@ -13,7 +13,7 @@ public class NewTodoPage implements BasePage {
 
 
     public void addNewTodo(Todo todo){
-        getDriver().findElement(newTodoInput).sendKeys(todo.getTaskName());
+        getDriver().findElement(newTodoInput).sendKeys(todo.getItem());
         getDriver().findElement(newTodoSubmit).click();
     }
     @Override

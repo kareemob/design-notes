@@ -14,22 +14,25 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
+import static com.qacart.fixtures.UserFixtures.getDefaultUser;
 
 public class AddTodoTest extends BaseTest {
+    TodoPage todoPage;
+    RegisterPage registerPage;
     @BeforeMethod
     public void setup(){
-
+        registerPage = new RegisterPage();
+        todoPage = new TodoPage();
         getDriver().get(ConfigFactory.getConfig().url() + "/signup");
-        RegisterPage registerPage = new RegisterPage();
-        registerPage.register(UserFixtures.getDefaultUser());
+        registerPage.registerApi(getDefaultUser());
+        todoPage.load();
     }
 
     @Test
     public void createTodo() {
-        TodoPage todoPage = new TodoPage();
         todoPage.clickAddTodo();
         NewTodoPage newTodoPage = new NewTodoPage();
-        Todo todo = Todo.builder().taskName("test").build();
+        Todo todo = Todo.builder().item("test").build();
         newTodoPage.addNewTodo(todo);
         Assert.assertTrue(todoPage.isTodoDisplayed());
     }

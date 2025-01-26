@@ -23,4 +23,7 @@ public interface FrameWorkConfig extends Config{
     @DefaultValue("CHROME")
     @ConverterClass(StringToBrowserTypeConverter.class)
     BrowserType browser();
+    @DefaultValue("https://todo.qacart.com/api/v1")
+    @Key("api.uri")
+    String apiUri();
 }
