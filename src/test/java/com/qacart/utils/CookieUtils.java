@@ -3,6 +3,9 @@ package com.qacart.utils;
 import io.restassured.response.Response;
 import org.openqa.selenium.Cookie;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import static com.qacart.driver.driverManager.DriverManager.getDriver;
 
 
@@ -15,5 +18,13 @@ public final class CookieUtils {
             Cookie browserCookies = new Cookie(cookie.getKey(), cookie.getValue());
             getDriver().manage().addCookie(browserCookies);
         }
+    }
+
+    public static void setCookies(Response response){
+        Set<Cookie> cookies = response.getDetailedCookies()
+                .asList().stream()
+                .map(cookie -> new Cookie(cookie.getName(), cookie.getValue()))
+                .collect(Collectors.toSet());
+        cookies.forEach(getDriver().manage()::addCookie);
     }
 }

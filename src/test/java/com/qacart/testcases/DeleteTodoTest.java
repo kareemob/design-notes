@@ -2,6 +2,7 @@ package com.qacart.testcases;
 
 import com.qacart.base.BaseTest;
 import com.qacart.config.ConfigFactory;
+import com.qacart.fixtures.TodoFixture;
 import com.qacart.models.Todo;
 import com.qacart.pages.NewTodoPage;
 import com.qacart.pages.RegisterPage;
@@ -18,17 +19,13 @@ public class DeleteTodoTest extends BaseTest {
 
     @BeforeMethod
     public void setup(){
-        getDriver().get(ConfigFactory.getConfig().url() + "/signup");
         RegisterPage registerPage = new RegisterPage();
+        registerPage.load();
+        String token = registerPage.registerApi(getDefaultUser());
         todoPage = new TodoPage();
-        registerPage.registerApi(getDefaultUser());
+        Todo todo = TodoFixture.generateTodo();
+        todoPage.addTodoApi(todo,token);
         todoPage.load();
-
-
-        todoPage.clickAddTodo();
-        NewTodoPage newTodoPage = new NewTodoPage();
-        Todo todo = Todo.builder().item("test").build();
-        newTodoPage.addNewTodo(todo);
     }
 
     @Test
@@ -36,4 +33,5 @@ public class DeleteTodoTest extends BaseTest {
         todoPage.loadTodos().get(0).clickDeleteIcon();
         Assert.assertTrue(todoPage.noTodosIsDisplayed());
     }
+
 }

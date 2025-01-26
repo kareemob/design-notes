@@ -32,9 +32,11 @@ public class RegisterPage implements BasePage {
         getDriver().findElement(submitButton).click();
     }
 
-    public void registerApi(User user){
+    public String registerApi(User user){
         Response response = UserClient.RegisterApi(user);
-        CookieUtils.setBrowserCookies(response);
+        CookieUtils.setCookies(response);
+        User returnedUser = response.body().as(User.class);
+        return returnedUser.getAccessToken();
     }
 
     @Override
