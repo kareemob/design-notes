@@ -13,6 +13,7 @@ target/
 *.ipr
 .idea
 allure-results
+target/screenshots
 
 ### Eclipse ###
 .apt_generated
