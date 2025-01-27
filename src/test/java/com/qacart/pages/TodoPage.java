@@ -1,8 +1,10 @@
 package com.qacart.pages;
 
 import com.qacart.base.BasePage;
+import com.qacart.client.TodoClient;
 import com.qacart.components.TodoComponent;
 import com.qacart.config.ConfigFactory;
+import com.qacart.models.Todo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -51,5 +53,9 @@ public class TodoPage implements BasePage {
     @Override
     public void load() {
         getDriver().get(ConfigFactory.getConfig().url() + "/todo");
+    }
+
+    public void addTodoApi(Todo todo, String token){
+        TodoClient.addTask(token, todo);
     }
 }

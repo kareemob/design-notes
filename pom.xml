@@ -16,6 +16,8 @@
         <testng.version>7.10.2</testng.version>
         <lombok.version>1.18.36</lombok.version>
         <owner.version>1.0.12</owner.version>
+        <restAssured.version>5.5.0</restAssured.version>
+        <jackson.version>2.18.2</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,6 +39,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restAssured.version}</version>
         </dependency>
     </dependencies>
 
