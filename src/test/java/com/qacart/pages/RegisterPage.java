@@ -5,6 +5,7 @@ import com.qacart.client.UserClient;
 import com.qacart.config.ConfigFactory;
 import com.qacart.models.User;
 import com.qacart.utils.CookieUtils;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.openqa.selenium.By;
 
@@ -22,7 +23,7 @@ public class RegisterPage implements BasePage {
     private final By submitButton = By.cssSelector("[data-testid=\"submit\"]");
 
     //Hiding implementation as test cases cares about functionality
-
+    @Step("Register UI")
     public void register(User user) {
         getDriver().findElement(firstNameInput).sendKeys(user.getFirstName());
         getDriver().findElement(lastNameInput).sendKeys(user.getLastName());
@@ -31,7 +32,7 @@ public class RegisterPage implements BasePage {
         getDriver().findElement(confirmPasswordInput).sendKeys(user.getPassword());
         getDriver().findElement(submitButton).click();
     }
-
+    @Step("Simulating register through api")
     public String registerApi(User user){
         Response response = UserClient.RegisterApi(user);
         CookieUtils.setCookies(response);
@@ -40,6 +41,7 @@ public class RegisterPage implements BasePage {
     }
 
     @Override
+    @Step("Load register page")
     public void load() {
         getDriver().get(ConfigFactory.getConfig().url() + "/signup");
     }
