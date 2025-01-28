@@ -6,13 +6,15 @@ import java.time.Duration;
 
 public final class DriverManager {
     private DriverManager(){}
-    private static WebDriver driver;
+
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
-        return driver;
+
+        return driver.get();
     }
 
-    public static void setDriver(WebDriver driver1) {
-        driver = driver1;
+    public static void setDriver(WebDriver receivedDriver) {
+        driver.set(receivedDriver);
     }
 }
